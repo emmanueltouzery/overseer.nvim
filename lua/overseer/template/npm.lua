@@ -52,6 +52,8 @@ local function get_candidate_package_files(opts)
   })
 end
 
+---@param opts overseer.SearchParams
+---@return string|nil
 local function get_package_file(opts)
   local candidate_packages = get_candidate_package_files(opts)
   -- go through candidate package files from closest to the file to least close
