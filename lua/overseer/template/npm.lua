@@ -97,6 +97,7 @@ return {
     local package = get_package_file(opts)
     if not package then
       cb({})
+      return
     end
     local bin = pick_package_manager(package)
     local data = files.load_json_file(package)
