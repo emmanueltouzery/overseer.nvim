@@ -54,6 +54,7 @@ return {
         if not result.diagnostics or vim.tbl_isempty(result.diagnostics) then
           return
         end
+        ---@cast result {diagnostics: vim.quickfix.entry[]}
         -- QF items might have bufnr instead of filename, but we need filename for grouping
         for _, diag in ipairs(result.diagnostics) do
           if not diag.filename and diag.bufnr and diag.bufnr ~= 0 then
