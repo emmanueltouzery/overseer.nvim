@@ -91,7 +91,7 @@ end
 local function can_create_terminal()
   -- Only allow creating a terminal in normal mode when we are not in a floating win.
   -- Creating the terminal will exit visual/insert mode and can cause some dialogs to close.
-  return vim.api.nvim_get_mode().mode == "n" and not util.is_floating_win(0)
+  return vim.api.nvim_get_mode().mode == "n" and (vim.bo.filetype == "OverseerList" or not util.is_floating_win(0))
 end
 
 local pending_terminal_jobs = {}
