@@ -517,6 +517,18 @@ M.list = function(opts, cb)
       return
     end
 
+    -- Make sure results are sorted by priority, and then name
+    -- i need that in my fork because i duplicate some auto-detected templates
+    -- with improvements, and put my version first using priority:
+    -- https://github.com/stevearc/overseer.nvim/pull/74#issuecomment-1334525201
+    table.sort(ret, function(a, b)
+      if (a.priority or 60) == (b.priority or 60) then
+        return a.name < b.name
+      else
+        return (a.priority or 60)< (b.priority or 60)
+      end
+    end)
+
     cb(ret, report)
   end
 
