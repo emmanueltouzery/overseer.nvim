@@ -117,6 +117,9 @@ function Form.new(title, schema, params, callback)
   vim.keymap.set("i", "<CR>", function()
     form:confirm()
   end, { buffer = bufnr })
+  vim.keymap.set("i", "<tab>", function()
+    form:confirm()
+  end, { buffer = bufnr })
   vim.api.nvim_create_autocmd("BufWriteCmd", {
     desc = "Submit on buffer write",
     buffer = bufnr,
