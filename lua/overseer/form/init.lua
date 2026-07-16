@@ -120,6 +120,9 @@ function Form.new(title, schema, params, callback)
   vim.keymap.set("i", "<tab>", function()
     form:confirm()
   end, { buffer = bufnr })
+  vim.keymap.set("i", "<s-tab>", function()
+    form:prev_field()
+  end, { buffer = bufnr })
   vim.api.nvim_create_autocmd("BufWriteCmd", {
     desc = "Submit on buffer write",
     buffer = bufnr,
@@ -197,6 +200,7 @@ function Form:render()
       {
         virt_text = { { prefix, "NormalFloat" }, { name, field_hl }, { ": ", "NormalFloat" } },
         virt_text_pos = "inline",
+        right_gravity = false,
         undo_restore = false,
         invalidate = true,
       },
